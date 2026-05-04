@@ -7,14 +7,18 @@ class SitewebConfig(AppConfig):
 
     def ready(self):
         import os
-        from django.contrib.auth.models import User
+        from django.db.utils import OperationalError
 
-        username = "admin"
-        password = "admin12345"
+        try:
+            from django.contrib.auth.models import User
 
-        if not User.objects.filter(username=username).exists():
-            User.objects.create_superuser(
-                username=username,
-                email="admin@gmail.com",
-                password=password
-            )
+            if not User.objects.filter(username="admin").exists():
+                User.objects.create_superuser(
+                    username="admin",
+                    email="admin@gmail.com",
+                    password="admin12345"
+                )
+
+        except OperationalError:
+            # La base n'est pas encore prête → on ignore
+            pass
