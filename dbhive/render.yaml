@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: dbhive-site
+    env: python
+    plan: free
+
+    buildCommand: |
+      pip install -r requirements.txt
+
+    startCommand: |
+      python manage.py migrate &&
+      python manage.py createsuperuser --noinput || true &&
+      gunicorn dbhive.wsgi:application
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: admin
+
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: admin@example.com
+
+      - key: DJANGO_SUPERUSER_PASSWORD
+        value: admin123
