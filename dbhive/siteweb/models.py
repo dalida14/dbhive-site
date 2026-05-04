@@ -20,17 +20,9 @@ class Article(models.Model):
     publie = models.BooleanField(default=False)
     slug = models.SlugField(unique=True, blank=True)
 
-   def save(self, *args, **kwargs):
-    if not self.slug:
-        self.slug = slugify(self.titre)
-    super().save(*args, **kwargs)
-
-            while Article.objects.filter(slug=slug).exists():
-                slug = f"{base_slug}-{counter}"
-                counter += 1
-
-            self.slug = slug
-
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.titre)
         super().save(*args, **kwargs)
 
     def __str__(self):
