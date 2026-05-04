@@ -14,7 +14,7 @@ class Article(models.Model):
     titre = models.CharField(max_length=255)
     resume = models.CharField(max_length=255)
     contenu = models.TextField()
-    image = models.ImageField(upload_to="articles/")
+    image = models.ImageField(upload_to="articles/", blank=True, null=True)
     categorie = models.CharField(max_length=32, choices=Categorie.choices)
     date_publication = models.DateTimeField(auto_now_add=True)
     publie = models.BooleanField(default=False)
