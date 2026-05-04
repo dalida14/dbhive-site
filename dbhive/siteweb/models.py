@@ -1,9 +1,8 @@
 from django.db import models
-
-from django.urls import reverse
-
+from django.utils.text import slugify
 
 class Article(models.Model):
+
     class Categorie(models.TextChoices):
         INFORMATIQUE = "informatique", "Informatique"
         ELECTRONIQUE = "electronique", "Électronique"
@@ -18,13 +17,12 @@ class Article(models.Model):
     categorie = models.CharField(max_length=32, choices=Categorie.choices)
     date_publication = models.DateTimeField(auto_now_add=True)
     publie = models.BooleanField(default=False)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True)
 
-    class Meta:
-        ordering = ["-date_publication"]
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.titre)
+        super().save(*args, **kwargs)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.titre
-
-    def get_absolute_url(self) -> str:
-        return reverse("article_detail", kwargs={"slug": self.slug})
