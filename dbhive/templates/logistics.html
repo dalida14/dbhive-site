@@ -30,7 +30,6 @@
 <section class="py-3 bg-light shop-filters-section">
     <div class="container">
         <div class="row g-3">
-            <!-- Barre de recherche -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="shop-search-wrapper">
                     <i class="bi bi-search shop-search-icon"></i>
@@ -42,7 +41,6 @@
                 </div>
             </div>
             
-            <!-- Filtres par catégorie -->
             <div class="col-12 col-md-6 col-lg-8">
                 <div class="shop-filters">
                     <button class="shop-filter-btn active" data-category="all">
@@ -57,7 +55,6 @@
             </div>
         </div>
         
-        <!-- Compteur de résultats -->
         <div class="row mt-3">
             <div class="col-12">
                 <div class="shop-results-count">
@@ -76,7 +73,8 @@
                 <div class="col-6 col-md-4 col-lg-3 shop-product-item"
                      data-category="{{ article.categorie }}"
                      data-name="{{ article.titre }}"
-                     data-search="{{ article.titre }} {{ article.resume }} {{ article.get_categorie_display }}">
+                     data-search="{{ article.titre }} {{ article.contenu }} {{ article.get_categorie_display }}">
+                     
                     <div class="shop-product-card">
                         <div class="shop-product-image-wrapper">
                             {% if article.image %}
@@ -90,16 +88,20 @@
                                 </a>
                             </div>
                         </div>
+
                         <div class="shop-product-info">
                             <span class="shop-product-category">{{ article.get_categorie_display }}</span>
+
                             <h3 class="shop-product-title">
                                 <a href="{{ article.get_absolute_url }}" class="text-decoration-none text-reset">
                                     {{ article.titre }}
                                 </a>
                             </h3>
+
                             <div class="shop-product-price">
-                                <span class="shop-price-label">{{ article.resume }}</span>
+                                <span class="shop-price-label">{{ article.contenu }}</span>
                             </div>
+
                             <a href="{% url 'quote' %}?article={{ article.titre|urlencode }}" class="shop-product-btn">
                                 Demander un devis
                             </a>
@@ -108,13 +110,11 @@
                 </div>
             {% endfor %}
         </div>
-        
-        <!-- Message si aucun résultat -->
+
         <div id="shopNoResults" class="shop-no-results" style="display: none;">
             <div class="text-center py-5">
-                <i class="bi bi-search" style="font-size: 3rem; color: #d1d5db; margin-bottom: 1rem;"></i>
                 <h3 class="mb-2">Aucun article trouvé</h3>
-                <p class="text-muted mb-4">Essayez de modifier vos critères de recherche ou de filtrage.</p>
+                <p class="text-muted mb-4">Essayez de modifier vos critères de recherche.</p>
                 <button class="shop-filter-btn active" data-category="all" onclick="resetFilters()">
                     Réinitialiser les filtres
                 </button>
@@ -123,170 +123,59 @@
     </div>
 </section>
 
-<!-- Script pour recherche et filtres -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('shopSearchInput');
-    const searchSuggestions = document.getElementById('shopSearchSuggestions');
     const filterButtons = document.querySelectorAll('.shop-filter-btn');
     const productItems = document.querySelectorAll('.shop-product-item');
     const resultsCount = document.getElementById('shopResultsCount');
     const noResults = document.getElementById('shopNoResults');
     const productsGrid = document.getElementById('shopProductsGrid');
-    
+
     let currentCategory = 'all';
     let currentSearch = '';
-    
-    // Données de recherche pour les suggestions
-    const productsData = Array.from(productItems).map(item => ({
-        name: item.getAttribute('data-name'),
-        search: item.getAttribute('data-search'),
-        element: item
-    }));
-    
-    // Fonction pour mettre à jour les résultats
+
     function updateResults() {
         let visibleCount = 0;
-        
-        productItems.forEach((item, index) => {
+
+        productItems.forEach(item => {
             const category = item.getAttribute('data-category');
-            const searchText = item.getAttribute('data-search').toLowerCase();
-            const name = item.getAttribute('data-name').toLowerCase();
-            
-            const matchesCategory = currentCategory === 'all' || category === currentCategory;
-            const matchesSearch = !currentSearch || 
-                                searchText.includes(currentSearch.toLowerCase()) ||
-                                name.includes(currentSearch.toLowerCase());
-            
-            const shouldShow = matchesCategory && matchesSearch;
-            
-            if (shouldShow) {
-                item.style.display = '';
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                
-                setTimeout(() => {
-                    item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, index * 30);
-                
-                visibleCount++;
-            } else {
-                item.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(-10px)';
-                
-                setTimeout(() => {
-                    item.style.display = 'none';
-                }, 250);
-            }
+            const text = item.getAttribute('data-search').toLowerCase();
+
+            const show = (currentCategory === 'all' || category === currentCategory)
+                      && (!currentSearch || text.includes(currentSearch));
+
+            item.style.display = show ? "" : "none";
+            if (show) visibleCount++;
         });
-        
-        // Mettre à jour le compteur
+
         resultsCount.textContent = visibleCount;
-        
-        // Afficher/masquer le message "aucun résultat"
-        setTimeout(() => {
-            if (visibleCount === 0) {
-                noResults.style.display = 'block';
-                productsGrid.style.display = 'none';
-            } else {
-                noResults.style.display = 'none';
-                productsGrid.style.display = '';
-            }
-        }, 300);
-    }
-    
-    // Recherche avec suggestions
-    searchInput.addEventListener('input', function(e) {
-        const query = e.target.value.trim();
-        currentSearch = query;
-        
-        if (query.length > 0) {
-            const matches = productsData.filter(product => 
-                product.search.toLowerCase().includes(query.toLowerCase()) ||
-                product.name.toLowerCase().includes(query.toLowerCase())
-            ).slice(0, 5);
-            
-            if (matches.length > 0) {
-                searchSuggestions.innerHTML = matches.map(product => 
-                    `<div class="shop-suggestion-item" onclick="selectSuggestion('${product.name.replace(/'/g, "\\'")}')">
-                        <i class="bi bi-search me-2"></i>${product.name}
-                    </div>`
-                ).join('');
-                searchSuggestions.style.display = 'block';
-            } else {
-                searchSuggestions.style.display = 'none';
-            }
+
+        if (visibleCount === 0) {
+            noResults.style.display = 'block';
+            productsGrid.style.display = 'none';
         } else {
-            searchSuggestions.style.display = 'none';
+            noResults.style.display = 'none';
+            productsGrid.style.display = '';
         }
-        
+    }
+
+    searchInput.addEventListener('input', function() {
+        currentSearch = this.value.toLowerCase();
         updateResults();
     });
-    
-    // Fermer les suggestions en cliquant ailleurs
-    document.addEventListener('click', function(e) {
-        if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
-            searchSuggestions.style.display = 'none';
-        }
-    });
-    
-    // Fonction pour sélectionner une suggestion
-    window.selectSuggestion = function(name) {
-        searchInput.value = name;
-        currentSearch = name;
-        searchSuggestions.style.display = 'none';
-        updateResults();
-    };
-    
-    // Fonction pour réinitialiser les filtres
-    window.resetFilters = function() {
-        currentCategory = 'all';
-        currentSearch = '';
-        searchInput.value = '';
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        document.querySelector('[data-category="all"]').classList.add('active');
-        searchSuggestions.style.display = 'none';
-        updateResults();
-    };
-    
-    // Filtres par catégorie
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const category = this.getAttribute('data-category');
-            
-            if (this.classList.contains('active') && category === 'all') {
-                // Permettre de réinitialiser en cliquant sur "Tous les articles" si déjà actif
-                resetFilters();
-                return;
-            }
-            
-            if (this.classList.contains('active')) {
-                return;
-            }
-            
-            currentCategory = category;
-            
-            filterButtons.forEach(btn => btn.classList.remove('active'));
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentCategory = this.getAttribute('data-category');
+            filterButtons.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            
             updateResults();
         });
     });
-    
-    // Initialiser
+
     updateResults();
-    
-    // Réinitialiser les transitions après le chargement
-    setTimeout(() => {
-        productItems.forEach(item => {
-            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-        });
-    }, 500);
 });
 </script>
+
 {% endblock %}
