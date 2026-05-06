@@ -1,5 +1,4 @@
 from django.db import models
-
 from django.urls import reverse
 
 
@@ -23,8 +22,8 @@ class Article(models.Model):
     class Meta:
         ordering = ["-date_publication"]
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.titre
 
-    def get_absolute_url(self) -> str:
+    def get_absolute_url(self):
         return reverse("article_detail", kwargs={"slug": self.slug})
