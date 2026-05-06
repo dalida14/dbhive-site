@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact – DB HIVE ENTREPRISE{% endblock %}
+{% block nav_contact_active %}active{% endblock %}
+
+{% block content %}
+<!-- HERO CONTACT -->
+<section class="hero-section">
+    <div class="container hero-content">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-7">
+                <h1 class="display-5 fw-bold mb-3 text-white">Contact</h1>
+                <p class="lead mb-3 text-white" style="opacity: 0.95;">
+                    DB HIVE ENTREPRISE se tient à la disposition des partenaires, entreprises
+                    et institutions pour l’examen de leurs besoins en import–export, commerce
+                    international et logistique.
+                </p>
+                <p class="mb-0 text-white-50">
+                    Les demandes peuvent être formulées via le formulaire dédié ou à partir
+                    des coordonnées de l’entreprise.
+                </p>
+            </div>
+            <div class="col-lg-5">
+                <div class="img-hero">
+                    <div class="text-center">
+                        <i class="bi bi-telephone" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                        <p class="mb-0">Ouagadougou, secteur 26<br>Tél. : 77 50 50 25</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row gy-4">
+            <!-- Coordonnées -->
+            <div class="col-lg-5">
+                <div class="border rounded-3 p-4 bg-light h-100">
+                    <h2 class="h5 fw-semibold text-dark mb-3">Coordonnées de l’entreprise</h2>
+                    <p class="mb-1 text-secondary">
+                        <span class="fw-semibold d-block">Adresse :</span>
+                        Ouagadougou, secteur 26, Burkina Faso
+                    </p>
+                    <p class="mb-1 text-secondary">
+                        <span class="fw-semibold d-block">Téléphone :</span>
+                        77 50 50 25
+                    </p>
+                    <p class="mb-1 text-secondary">
+                        <span class="fw-semibold d-block">IFU :</span>
+                        00265007E
+                    </p>
+                    <p class="mb-3 text-secondary">
+                        <span class="fw-semibold d-block">RCCM :</span>
+                        BF-OUA-01-2025-B12-04094
+                    </p>
+                    <p class="small text-secondary mb-3">
+                        Ces informations sont destinées aux échanges institutionnels et aux
+                        projets impliquant des opérations d’import–export, de fourniture
+                        d’équipements ou de services logistiques.
+                    </p>
+                    <div class="img-placeholder" style="min-height: 180px;">
+                        <div class="text-center p-3">
+                            <i class="bi bi-geo-alt" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i>
+                            <p class="mb-0 small">Localisation – Ouagadougou, secteur 26, Burkina Faso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire de contact -->
+            <div class="col-lg-7">
+                <div class="border rounded-3 p-4 bg-white h-100">
+                    <h2 class="h5 fw-semibold text-dark mb-3">Formulaire de contact</h2>
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_nom" class="form-label">Nom / Organisation</label>
+                            <input type="text" class="form-control" id="id_nom" name="nom" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_email" class="form-label">Adresse e-mail</label>
+                            <input type="email" class="form-control" id="id_email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_telephone" class="form-label">Téléphone</label>
+                            <input type="text" class="form-control" id="id_telephone" name="telephone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_sujet" class="form-label">Objet de la demande</label>
+                            <input type="text" class="form-control" id="id_sujet" name="sujet" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_message" class="form-label">Message</label>
+                            <textarea class="form-control" id="id_message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Envoyer la demande
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+

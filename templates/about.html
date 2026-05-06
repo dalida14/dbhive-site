@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}À propos – DB HIVE ENTREPRISE{% endblock %}
+{% block nav_about_active %}active{% endblock %}
+{% block body_class %}page-about{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- 1) HERO MINIMAL PREMIUM -->
+<section class="about-hero-natgourmet">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="about-hero-natgourmet-content">
+                    <h1 class="about-hero-natgourmet-title">
+                        DB HIVE ENTREPRISE
+                    </h1>
+                    <div class="about-hero-natgourmet-divider"></div>
+                    <p class="about-hero-natgourmet-subtitle">
+                        Votre pont stratégique entre l'Afrique et le monde
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2) SECTION PRÉSENTATION (style éditorial) -->
+<section class="about-presentation-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-xl-8">
+                <div class="about-presentation-content">
+                    <h2 class="about-presentation-title">Notre Histoire</h2>
+                    <div class="about-presentation-text">
+                        <p>
+                            DB Hive Entreprise est née d'une conviction forte : l'Afrique possède un potentiel commercial immense. Pourtant, de nombreuses entreprises se heurtent à des obstacles <span class="about-text-accent">logistiques</span>, <span class="about-text-accent">administratifs</span> et <span class="about-text-accent">opérationnels</span> qui freinent leur croissance.
+                        </p>
+                        <p>
+                            Nous avons créé une structure capable de relier efficacement les marchés africains aux réseaux internationaux, en garantissant <strong>fiabilité</strong>, <strong>conformité</strong> et <strong>performance</strong>. Avec une double implantation stratégique à Ouagadougou et à Tunis, et un réseau de partenaires de confiance en Chine, en Belgique et aux Émirats arabes unis, nous facilitons les échanges commerciaux entre l'Afrique et le reste du monde.
+                        </p>
+                        <p class="mb-0">
+                            Chaque opération que nous menons renforce les économies locales et ouvre de nouveaux horizons commerciaux pour nos clients.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3) SECTION AVEC BLOC VISUEL CONTRASTÉ -->
+<section class="about-visual-section">
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6">
+                <div class="about-visual-content">
+                    <h2 class="about-visual-title">
+                        Connecter les marchés, simplifier les échanges
+                    </h2>
+                    <div class="about-visual-text">
+                        <p>
+                            Nous transformons la complexité du commerce international en opportunités de croissance durables. Notre expertise couvre l'ensemble de la chaîne d'approvisionnement, de la planification initiale jusqu'à la livraison finale.
+                        </p>
+                        <p class="mb-0">
+                            Grâce à notre réseau international et notre maîtrise des procédures douanières, nous garantissons un accompagnement complet et personnalisé pour chaque projet.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-visual-block">
+                    <div class="about-visual-block-content">
+                        <div class="about-visual-block-icon">
+                            <i class="bi bi-globe-americas"></i>
+                        </div>
+                        <h3 class="about-visual-block-title">Notre engagement</h3>
+                        <p class="about-visual-block-text">
+                            "Créer de la croissance durable en facilitant les échanges commerciaux internationaux entre l'Afrique et le monde."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION EXPERTISES – VERSION CORPORATE MODERNE -->
+<section class="enterprise-modern">
+    <div class="enterprise-wrapper">
+
+        <div class="enterprise-title">
+            <h2>Nos domaines d’intervention</h2>
+            <p>
+                Nous accompagnons les entreprises et institutions dans leurs opérations 
+                commerciales internationales avec rigueur, expertise et conformité.
+            </p>
+        </div>
+
+        <div class="enterprise-grid">
+
+            <div class="enterprise-card">
+                <span>01</span>
+                <h3>Import – Export</h3>
+                <p>Gestion complète des flux internationaux et conformité douanière.</p>
+            </div>
+
+            <div class="enterprise-card">
+                <span>02</span>
+                <h3>Logistique & Transport</h3>
+                <p>Coordination multimodale et sécurisation des marchandises.</p>
+            </div>
+
+            <div class="enterprise-card">
+                <span>03</span>
+                <h3>Sourcing & Équipements</h3>
+                <p>Identification de fournisseurs certifiés et contrôle qualité.</p>
+            </div>
+
+            <div class="enterprise-card">
+                <span>04</span>
+                <h3>Représentation & Conseil</h3>
+                <p>Développement stratégique et accompagnement commercial.</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- 6) SECTION ENGAGEMENTS -->
+<section class="about-commitments-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="about-commitments-title">Nos Engagements</h2>
+                <p class="about-commitments-intro">
+                    Les valeurs qui guident chaque opération et chaque relation client : fiabilité, transparence, efficacité, satisfaction client et partenariat durable au service de votre réussite.
+                </p>
+            </div>
+        </div>
+        <div class="row gy-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="about-commitment-card">
+                    <div class="about-commitment-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h3 class="about-commitment-title">Fiabilité</h3>
+                    <p class="about-commitment-text">
+                        Nous tenons nos engagements et assurons un suivi rigoureux de chaque opération. Vos délais, vos spécifications et vos objectifs sont respectés grâce à des processus éprouvés et une équipe dédiée, pour une exécution fiable de bout en bout.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="about-commitment-card">
+                    <div class="about-commitment-icon">
+                        <i class="bi bi-eye-fill"></i>
+                    </div>
+                    <h3 class="about-commitment-title">Transparence</h3>
+                    <p class="about-commitment-text">
+                        Chaque étape est claire, documentée et conforme aux réglementations en vigueur. Nous communiquons les coûts, les délais et les risques de manière ouverte afin de construire une relation de confiance avec nos clients et partenaires.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="about-commitment-card">
+                    <div class="about-commitment-icon">
+                        <i class="bi bi-speedometer2"></i>
+                    </div>
+                    <h3 class="about-commitment-title">Performance</h3>
+                    <p class="about-commitment-text">
+                        Efficacité opérationnelle et optimisation des coûts et des délais : nous transformons les contraintes logistiques et réglementaires en avantages compétitifs. Notre objectif est de livrer des résultats mesurables et durables pour votre activité.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="about-commitment-card">
+                    <div class="about-commitment-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h3 class="about-commitment-title">Proximité</h3>
+                    <p class="about-commitment-text">
+                        Satisfaction client et partenariat à long terme : nous vous accompagnons avec un interlocuteur dédié et des solutions adaptées à vos besoins. Nous visons votre réussite commerciale et construisons avec vous des relations durables, fondées sur la performance et la confiance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7) CTA FINAL IMPACTANT -->
+<section class="about-cta-natgourmet">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="about-cta-natgourmet-title">
+                    Prêt à développer vos échanges internationaux ?
+                </h2>
+                <p class="about-cta-natgourmet-text">
+                    DB HIVE ENTREPRISE met à votre disposition son expertise et son réseau international pour répondre à vos besoins spécifiques.
+                </p>
+                <div class="about-cta-natgourmet-buttons">
+                    <a href="{% url 'quote' %}" class="btn btn-cta-natgourmet-red btn-lg px-5 py-3">
+                        Demander un devis
+                    </a>
+                    <a href="{% url 'contact' %}" class="btn btn-cta-natgourmet-white btn-lg px-5 py-3 ms-3">
+                        Nous contacter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

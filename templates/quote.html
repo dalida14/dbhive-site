@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Demande de devis – DB HIVE ENTREPRISE{% endblock %}
+{% block nav_quote_active %}active{% endblock %}
+
+{% block content %}
+<!-- HERO DEVIS -->
+<section class="hero-section">
+    <div class="container hero-content">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-7">
+                <h1 class="display-5 fw-bold mb-3 text-white">Demande de devis</h1>
+                <p class="lead mb-3 text-white" style="opacity: 0.95;">
+                    Cette rubrique permet de formuler une demande de devis auprès de DB HIVE ENTREPRISE
+                    pour des opérations d’import–export, de fourniture d’équipements industriels,
+                    de représentation commerciale ou de services logistiques.
+                </p>
+                <p class="mb-0 text-white-50">
+                    Les informations transmises permettent d’orienter l’analyse des besoins et de préparer
+                    une réponse adaptée au contexte du projet.
+                </p>
+            </div>
+            <div class="col-lg-5">
+                <div class="img-hero">
+                    <div class="text-center">
+                        <i class="bi bi-file-earmark-text" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                        <p class="mb-0">Projets · Marchés publics · Partenariats</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formulaire de devis -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="border rounded-3 p-4 bg-white shadow-sm">
+                    <h2 class="h5 fw-semibold text-dark mb-3">Formulaire de demande</h2>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success mb-3" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <input type="hidden" name="article" value="{{ article_param }}">
+                        <div class="mb-3">
+                            <label for="id_structure" class="form-label">Nom de la structure / Institution</label>
+                            <input type="text" class="form-control" id="id_structure" name="structure" required value="{{ form.structure.value|default_if_none:'' }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_contact" class="form-label">Personne de contact</label>
+                            <input type="text" class="form-control" id="id_contact" name="contact" required value="{{ form.contact.value|default_if_none:'' }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_email" class="form-label">Adresse e-mail</label>
+                            <input type="email" class="form-control" id="id_email" name="email" required value="{{ form.email.value|default_if_none:'' }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_telephone" class="form-label">Téléphone</label>
+                            <input type="text" class="form-control" id="id_telephone" name="telephone" value="{{ form.telephone.value|default_if_none:'' }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_domaine" class="form-label">Domaine concerné</label>
+                            <select class="form-select" id="id_domaine" name="domaine" required>
+                                <option value="">Sélectionner</option>
+                                <option value="import_export">Import – Export</option>
+                                <option value="representation">Représentation commerciale</option>
+                                <option value="logistique">Logistique et services associés</option>
+                                {% for value, label in categories %}
+                                    <option value="{{ value }}" {% if form.domaine.value == value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                                <option value="articles" {% if form.domaine.value == 'articles' %}selected{% endif %}>Articles disponibles</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">Description du besoin</label>
+                            <textarea class="form-control" id="id_description" name="description" rows="5" required>{{ form.description.value|default_if_none:'' }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Envoyer la demande de devis
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Script pour pré-remplir le formulaire avec le nom de l'article -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupérer le paramètre 'article' de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleParam = urlParams.get('article');
+    const articleName = "{{ article_display_name|default:''|escapejs }}";
+    
+    const effectiveName = articleName || (articleParam ? decodeURIComponent(articleParam) : "");
+    if (effectiveName) {
+        // Pré-remplir le champ description
+        const descriptionField = document.getElementById('id_description');
+        if (descriptionField) {
+            if (!descriptionField.value) {
+                descriptionField.value = 'Demande de devis pour : ' + effectiveName;
+            }
+        }
+        
+        // Sélectionner automatiquement "Articles disponibles" dans le domaine
+        const domaineField = document.getElementById('id_domaine');
+        if (domaineField) {
+            domaineField.value = 'articles';
+        }
+    }
+});
+</script>
+{% endblock %}
+
+
