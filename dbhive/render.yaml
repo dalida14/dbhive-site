@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: dbhive-site-1
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: >
+  python manage.py migrate &&
+  gunicorn dbhive.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: admin
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: admin@gmail.com
+      - key: DJANGO_SUPERUSER_PASSWORD
+        value: admin12345

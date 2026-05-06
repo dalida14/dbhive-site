@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Accueil – DB HIVE ENTREPRISE{% endblock %}
+{% block nav_home_active %}active{% endblock %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero-home">
+    <!-- Carousel en arrière-plan -->
+    <div id="heroCarousel" class="carousel slide carousel-fade hero-home-carousel"
+         data-bs-ride="carousel"
+         data-bs-interval="4500"
+         data-bs-pause="hover">
+        <div class="carousel-inner">
+            <!-- Slide 1 : image actuelle -->
+            <div class="carousel-item active">
+                <div class="hero-home-slide"
+                     style="background-image: url('{% static "images/hero-db-hive.jpg" %}');">
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <div class="hero-home-slide"
+                     style="background-image: url('{% static "images/carousel-global.png" %}');">
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <div class="hero-home-slide"
+                     style="background-image: url('{% static "images/carousel-bateau.png" %}');">
+                </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+                <div class="hero-home-slide"
+                     style="background-image: url('{% static "images/carousel-avion.png" %}');">
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+        </div>
+    </div>
+
+    <!-- Overlay sombre -->
+    <div class="hero-home-overlay"></div>
+
+    <!-- Contenu hero au-dessus -->
+    <div class="container hero-home-inner">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-7">
+                <p class="text-uppercase small text-white-50 mb-2">
+                    Import–Export · Commerce international · Logistique
+                </p>
+                <h1 class="hero-home-title text-white mb-3">
+                    Faciliter les échanges entre l'Afrique et le reste du monde
+                </h1>
+                <p class="hero-home-subtitle text-white-50 mb-4">
+                    DB HIVE ENTREPRISE accompagne les entreprises, grossistes, distributeurs et institutions
+                    dans leurs opérations d'import–export en assurant un service fiable, suivi et conforme
+                    aux normes internationales.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{% url 'quote' %}" class="btn btn-primary btn-sm px-4">
+                        Demander un devis
+                    </a>
+                    <a href="{% url 'services' %}" class="btn btn-outline-light btn-sm px-4">
+                        Consulter nos services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRÉSENTATION GÉNÉRALE -->
+<section class="section-about">
+    <div class="container">
+        <div class="row align-items-center gy-5 fade-in-up">
+            <div class="col-lg-5 order-lg-1 order-2">
+                <div class="about-visual-card">
+                    <div class="about-visual-image"
+                         style="background-image: url('{% static "images/carousel-global.png" %}');">
+                        <div class="about-visual-overlay"></div>
+                    </div>
+                    <div class="about-visual-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Partenaires internationaux</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">2</div>
+                            <div class="stat-label">Implantations stratégiques</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 order-lg-2 order-1">
+                <div class="about-card">
+                    <p class="about-slogan mb-3">Un pont commercial entre l'Afrique et le monde</p>
+                    <h2 class="section-heading">Présentation générale</h2>
+                    <div class="section-heading-line"></div>
+                    
+                    <div class="about-text-wrapper">
+                        <p class="about-text">
+                            DB HIVE ENTREPRISE intervient dans l'<span class="keyword">import–export</span>, le
+                            <span class="keyword">commerce international</span> et la
+                            <span class="keyword">logistique</span>. Nous accompagnons les entreprises, grossistes,
+                            distributeurs et institutions qui souhaitent structurer ou développer leurs échanges
+                            entre l'<span class="keyword">Afrique</span> et les autres continents.
+                        </p>
+                        
+                        <div class="about-quote">
+                            <p class="mb-0">
+                                <em>Notre mission : faciliter vos opérations commerciales internationales
+                                en vous offrant un service fiable, suivi et conforme aux normes en vigueur.</em>
+                            </p>
+                        </div>
+                        
+                        <p class="about-text">
+                            En s'appuyant sur un réseau de partenaires basés en Chine, en Tunisie, en Belgique
+                            et aux Émirats arabes unis, nous proposons des solutions adaptées à vos besoins
+                            et conformes aux standards internationaux.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DOMAINES CLÉS -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <h2 class="section-heading mb-2">Domaines d'intervention</h2>
+                <div class="section-heading-line" style="margin-bottom: 0.75rem;"></div>
+                <p class="text-secondary mb-0">
+                    Les services de DB HIVE ENTREPRISE couvrent les principaux maillons de la chaîne
+                    commerciale et logistique.
+                </p>
+            </div>
+        </div>
+
+        <div class="row gy-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card domain-card h-100">
+                    <div class="domain-card-image"
+                         style="background-image: url('{% static "images/carousel-global.png" %}');"></div>
+                    <div class="domain-card-content">
+                        <h3 class="domain-card-title mb-2">Import – Export</h3>
+                        <p class="domain-card-text mb-0">
+                            Exportation de produits africains et importation de biens vers l'Afrique,
+                            avec gestion des formalités douanières et de la documentation internationale.
+                        </p>
+                        <div class="mt-2">
+                            <a href="{% url 'services' %}" class="btn btn-outline-secondary btn-sm">
+                                En savoir plus
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card domain-card h-100">
+                    <div class="domain-card-image"
+                         style="background-image: url('{% static "images/hero-db-hive.jpg" %}');"></div>
+                    <div class="domain-card-content">
+                        <h3 class="domain-card-title mb-2">Équipements industriels</h3>
+                        <p class="domain-card-text mb-0">
+                            Fourniture de machines, équipements et pièces de rechange d'origine pour
+                            différents secteurs, avec assistance technique et service après-vente
+                            via des partenaires agréés.
+                        </p>
+                        <div class="mt-2">
+                            <a href="{% url 'services' %}" class="btn btn-outline-secondary btn-sm">
+                                En savoir plus
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card domain-card h-100">
+                    <div class="domain-card-image"
+                         style="background-image: url('{% static "images/carousel-avion.png" %}');"></div>
+                    <div class="domain-card-content">
+                        <h3 class="domain-card-title mb-2">Représentation commerciale</h3>
+                        <p class="domain-card-text mb-0">
+                            Représentation locale de marques sur le marché africain, promotion,
+                            prospection et développement commercial, création et gestion de réseaux
+                            de distribution.
+                        </p>
+                        <div class="mt-2">
+                            <a href="{% url 'services' %}" class="btn btn-outline-secondary btn-sm">
+                                En savoir plus
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card domain-card h-100">
+                    <div class="domain-card-image"
+                         style="background-image: url('{% static "images/carousel-bateau.png" %}');"></div>
+                    <div class="domain-card-content">
+                        <h3 class="domain-card-title mb-2">Articles disponibles</h3>
+                        <p class="domain-card-text mb-0">
+                            Catalogue d'articles et produits disponibles via notre réseau international :
+                            équipements industriels, matériaux, pièces de rechange et bien plus.
+                        </p>
+                        <div class="mt-2">
+                            <a href="{% url 'logistics' %}" class="btn btn-outline-secondary btn-sm">
+                                Voir le catalogue
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MISSION ET VISION -->
+<section class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-6">
+                <div class="d-flex align-items-start mb-3">
+                    <i class="bi bi-bullseye me-3" style="font-size: 2.5rem; color: #667eea;"></i>
+                    <div>
+                        <h2 class="h4 fw-bold mb-3">Notre mission</h2>
+                        <p class="mb-0">
+                            Favoriser la fluidité des échanges commerciaux entre les différents continents
+                            en offrant un service professionnel, sécurisé et adapté aux besoins de chaque client.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="d-flex align-items-start mb-3">
+                    <i class="bi bi-eye me-3" style="font-size: 2.5rem; color: #667eea;"></i>
+                    <div>
+                        <h2 class="h4 fw-bold mb-3">Notre vision</h2>
+                        <p class="mb-0">
+                            Devenir un acteur de référence dans le commerce international, en développant
+                            des solutions innovantes et durables adaptées aux marchés émergents et aux
+                            chaînes de valeur mondiales.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
