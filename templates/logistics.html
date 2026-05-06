@@ -76,7 +76,7 @@
                 <div class="col-6 col-md-4 col-lg-3 shop-product-item"
                      data-category="{{ article.categorie }}"
                      data-name="{{ article.titre }}"
-                     data-search="{{ article.titre }} {{ article.resume }} {{ article.get_categorie_display }}">
+                     data-search="{{ article.titre }} {{ article.description }} {{ article.get_categorie_display }}">
                     <div class="shop-product-card">
                         <div class="shop-product-image-wrapper">
                             {% if article.image %}
@@ -98,7 +98,7 @@
                                 </a>
                             </h3>
                             <div class="shop-product-price">
-                                <span class="shop-price-label">{{ article.resume }}</span>
+                                <span class="shop-price-label">{{ article.description }}</span>
                             </div>
                             <a href="{% url 'quote' %}?article={{ article.titre|urlencode }}" class="shop-product-btn">
                                 Demander un devis
